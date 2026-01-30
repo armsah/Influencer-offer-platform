@@ -2,7 +2,7 @@ const fs = require('fs').promises;
 const readline = require('readline');
 
 const OFFERS_FILE = './data/offers.json';
-const CUSTOM_PAYOUTS_FILE = './data/influencerCustomPayouts.json'; // your JSON with influencerId
+const CUSTOM_PAYOUTS_FILE = './data/influencerCustomPayouts.json';
 
 // Read JSON helper
 async function readJSON(file) {

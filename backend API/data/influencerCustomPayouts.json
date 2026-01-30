@@ -7,7 +7,7 @@
   },
   {
     "offerId": "offer_3",
-    "influencerId": "inf_456",
+    "influencerId": "inf_123",
     "type": "FIXED",
     "fixedAmount": 1500
   },
@@ -27,6 +27,16 @@
       "BE": 38
     }
   },
+  {
+    "offerId": "offer_1769694347636",
+    "influencerId": "inf_321",
+    "type": "CPA",
+    "cpaAmount": 24,
+    "cpaCountryOverrides": {
+      "GB": 27
+    }
+  },
+
   {
     "offerId": "offer_1769694347636",
     "influencerId": "inf_321",

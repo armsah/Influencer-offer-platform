@@ -3,7 +3,7 @@ const readline = require('readline');
 
 const OFFERS_FILE = './data/offers.json';
 const PAYOUTS_FILE = './data/offerPayouts.json';
-const CUSTOM_PAYOUTS_FILE = './data/influencerCustomPayouts.json'; // new file
+const CUSTOM_PAYOUTS_FILE = './data/influencerCustomPayouts.json';
 
 // Read and write JSON files
 async function readJSON(file) {
