@@ -1,58 +1,56 @@
+/**
+ * listOffersForInfluencer.js
+ * Lists all offers and custom fixed payouts for a specific influencer.
+ * Reads data from JSON files and displays offer details and payouts.
+ * Run via terminal:
+ * >> node listOffersForInfluencer.js
+ */
+
+
+// Introductory section imports modules and declares application-level constants.
 const fs = require('fs').promises;
 const readline = require('readline');
 
 const OFFERS_FILE = './data/offers.json';
 const CUSTOM_PAYOUTS_FILE = './data/influencerCustomPayouts.json';
 
-// Read JSON helper
+// Function for reading from a file
 async function readJSON(file) {
   try {
     const data = await fs.readFile(file, 'utf8');
     return JSON.parse(data);
-  } catch (err) {
+  } catch {
     return [];
   }
 }
 
-// Prompt helper
+// Function prompts the user for input via the terminal and returns the response.
 function prompt(question) {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
   return new Promise(resolve => rl.question(question, answer => {
     rl.close();
-    resolve(answer);
+    resolve(answer.trim());
   }));
 }
 
-// Main function
+// Main function for listing custom offer(s) for a specific influencer
 async function listOffersForInfluencer() {
   try {
     const influencerId = await prompt('Enter Influencer ID: ');
+    if (!influencerId) return console.log('Influencer ID is required!');
 
-    if (!influencerId) {
-      console.log('Influencer ID is required!');
-      return;
-    }
+    const [offers, customPayouts] = await Promise.all([
+      readJSON(OFFERS_FILE),
+      readJSON(CUSTOM_PAYOUTS_FILE),
+    ]);
 
-    const offers = await readJSON(OFFERS_FILE);
-    const customPayouts = await readJSON(CUSTOM_PAYOUTS_FILE);
-
-    // Filter payouts for this influencer
     const influencerPayouts = customPayouts.filter(p => p.influencerId === influencerId);
-
-    if (influencerPayouts.length === 0) {
-      console.log(`No offers found for influencer ${influencerId}`);
-      return;
-    }
+    if (influencerPayouts.length === 0) return console.log(`No offers found for influencer ${influencerId}`);
 
     console.log(`\nOffers for Influencer ${influencerId}:\n`);
 
     influencerPayouts.forEach(payout => {
       const offer = offers.find(o => o.id === payout.offerId);
-
       console.log('---');
       if (offer) {
         console.log(`ID: ${offer.id}`);
@@ -60,32 +58,16 @@ async function listOffersForInfluencer() {
         console.log(`Description: ${offer.description}`);
         console.log(`Categories: ${offer.categories.join(', ')}`);
       } else {
-        console.log(`Offer ID: ${payout.offerId} (offer details not found)`);
+        console.log(`Offer ID: ${payout.offerId} (details not found)`);
       }
-
       console.log('Payout:');
-      if (payout.type === 'FIXED') {
-        console.log(`  Type: FIXED`);
-        console.log(`  Amount: $${payout.fixedAmount}`);
-      } else if (payout.type === 'CPA') {
-        console.log(`  Type: CPA`);
-        console.log(`  Base CPA: $${payout.cpaAmount}`);
-        if (payout.cpaCountryOverrides) {
-          console.log(`  Country Overrides: ${JSON.stringify(payout.cpaCountryOverrides)}`);
-        }
-      } else if (payout.type === 'CPA_AND_FIXED') {
-        console.log(`  Type: CPA + FIXED`);
-        console.log(`  Base CPA: $${payout.cpaAmount}`);
-        console.log(`  Fixed Amount: $${payout.fixedAmount}`);
-        if (payout.cpaCountryOverrides) {
-          console.log(`  Country Overrides: ${JSON.stringify(payout.cpaCountryOverrides)}`);
-        }
-      }
+      console.log(`Type: FIXED`);
+      console.log(`Amount: $${payout.fixedAmount}`);
     });
 
     console.log('\nEnd of list.\n');
-  } catch (error) {
-    console.error('Error:', error.message);
+  } catch (err) {
+    console.error('Error:', err.message);
   }
 }
 

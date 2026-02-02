@@ -1,26 +1,14 @@
 [
   {
-    "offerId": "offer_1769854728809",
-    "influencerId": "infl_1",
+    "offerId": "offer_1",
+    "influencerId": "INF_1",
     "type": "FIXED",
     "fixedAmount": 1000
   },
   {
-    "offerId": "offer_1769855005421",
-    "influencerId": "infl_1",
+    "offerId": "offer_2",
+    "influencerId": "INF_2",
     "type": "FIXED",
-    "fixedAmount": 5000
-  },
-  {
-    "offerId": "offer_1769855196055",
-    "influencerId": "infl_2",
-    "type": "FIXED",
-    "fixedAmount": 4000
-  },
-  {
-    "offerId": "offer_1769855349459",
-    "influencerId": "infl_3",
-    "type": "FIXED",
-    "fixedAmount": 5000
+    "fixedAmount": 12345
   }
 ]

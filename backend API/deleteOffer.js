@@ -1,3 +1,13 @@
+/**
+ * deleteOffer.js deletes an influencer offer and its associated payouts.
+ * It removes the offer, its base payout, and any custom influencer payouts.
+ * Changes are saved to JSON files. 
+ * User can run it via powershell terminal: 
+ * >> node deleteOffer.js
+ */
+
+
+// Introductory section imports modules and declares application-level constants.
 const fs = require('fs').promises;
 const readline = require('readline');
 
@@ -5,7 +15,7 @@ const OFFERS_FILE = './data/offers.json';
 const PAYOUTS_FILE = './data/offerPayouts.json';
 const CUSTOM_PAYOUTS_FILE = './data/influencerCustomPayouts.json';
 
-// Read/write JSON helpers
+// Functions for reading from and writing to file
 async function readJSON(file) {
   const data = await fs.readFile(file, 'utf8');
   return JSON.parse(data);
@@ -15,7 +25,7 @@ async function writeJSON(file, data) {
   await fs.writeFile(file, JSON.stringify(data, null, 2));
 }
 
-// Terminal prompt helper
+// Function prompts the user for input via the terminal and returns the response.
 function prompt(question) {
   const rl = readline.createInterface({
     input: process.stdin,
@@ -30,7 +40,7 @@ function prompt(question) {
   });
 }
 
-// Main delete function
+// Main function for deleting an offer
 async function deleteOffer() {
   try {
     const offerId = await prompt('Enter the Offer ID to delete: ');
@@ -47,17 +57,13 @@ async function deleteOffer() {
       return;
     }
 
-    // Remove offer
     offers.splice(offerIndex, 1);
 
-    // Remove base payout
     const payoutIndex = payouts.findIndex(p => p.offerId === offerId);
     if (payoutIndex !== -1) payouts.splice(payoutIndex, 1);
 
-    // Remove custom payouts for this offer
     const remainingCustomPayouts = customPayouts.filter(p => p.offerId !== offerId);
 
-    // Save updated files
     await Promise.all([
       writeJSON(OFFERS_FILE, offers),
       writeJSON(PAYOUTS_FILE, payouts),

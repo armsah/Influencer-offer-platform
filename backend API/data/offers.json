@@ -1,98 +1,17 @@
 [
   {
-    "id": "offer_1769851564258",
-    "title": "Protein Powder",
-    "description": "Health-focused protein supplement",
-    "categories": [
-      "Health",
-      "Nutrition"
-    ]
-  },
-  {
-    "id": "offer_1769852348329",
-    "title": "Emma Chamberlain",
-    "description": "Gen-Z favorite blending high fashion with authenticity",
-    "categories": [
-      "Fashion"
-    ]
-  },
-  {
-    "id": "offer_1769852705439",
-    "title": "Toblerone",
-    "description": "The best chocolate bars from Switzerland.",
-    "categories": [
-      "Food",
-      "Nutrition"
-    ]
-  },
-  {
-    "id": "offer_1769853383784",
-    "title": "Swim Suite",
-    "description": "Best quality products which serves you for years.",
-    "categories": [
-      "Sport"
-    ]
-  },
-  {
-    "id": "offer_1769853560630",
+    "id": "offer_1",
     "title": "ABC",
-    "description": "Best book in the world.",
+    "description": "DFG",
     "categories": [
-      "Reading"
+      "Tech"
     ]
   },
   {
-    "id": "offer_1769853805288",
-    "title": "Investing Tips for Beginners",
-    "description": "Practical guidance on stock market investing.",
+    "id": "offer_2",
+    "title": "fafa",
+    "description": "faf",
     "categories": [
-      "Finance",
-      "Banking"
-    ]
-  },
-  {
-    "id": "offer_1769854005161",
-    "title": "Gaming Setup",
-    "description": "In this package included all modern toolkit.",
-    "categories": [
-      "Gaming",
-      "IT"
-    ]
-  },
-  {
-    "id": "offer_1769854728809",
-    "title": "Nike boots",
-    "description": "The best sport products during Fitness trainings.",
-    "categories": [
-      "Sport",
-      "Health"
-    ]
-  },
-  {
-    "id": "offer_1769855005421",
-    "title": "ABCD",
-    "description": "I love ABCD",
-    "categories": [
-      "Love",
-      "Patience"
-    ]
-  },
-  {
-    "id": "offer_1769855196055",
-    "title": "BBB",
-    "description": "This is the world we live in!",
-    "categories": [
-      "Life",
-      "Joy"
-    ]
-  },
-  {
-    "id": "offer_1769855349459",
-    "title": "Bread",
-    "description": "I eat it every day!",
-    "categories": [
-      "Food",
-      "Nutrition",
       "Health"
     ]
   }

@@ -1,73 +1,19 @@
 [
   {
-    "offerId": "offer_1769851564258",
-    "type": "FIXED",
-    "fixedAmount": 300
-  },
-  {
-    "offerId": "offer_1769852348329",
-    "type": "FIXED",
-    "fixedAmount": 500
-  },
-  {
-    "offerId": "offer_1769852705439",
+    "offerId": "offer_1",
     "type": "CPA",
-    "cpaAmount": 40,
+    "cpaAmount": 100,
     "cpaCountryOverrides": {
-      "GB": 90,
-      "US": 30
+      "DE": 12
     }
   },
   {
-    "offerId": "offer_1769853383784",
+    "offerId": "offer_2",
     "type": "CPA",
-    "cpaAmount": 15
-  },
-  {
-    "offerId": "offer_1769853560630",
-    "type": "CPA",
-    "cpaAmount": 28,
+    "cpaAmount": 124,
     "cpaCountryOverrides": {
-      "DE": 40
+      "FI": 278,
+      "US": 543
     }
-  },
-  {
-    "offerId": "offer_1769853805288",
-    "type": "CPA_AND_FIXED",
-    "cpaAmount": 30,
-    "cpaCountryOverrides": {
-      "GB": 76
-    },
-    "fixedAmount": 700
-  },
-  {
-    "offerId": "offer_1769854005161",
-    "type": "CPA_AND_FIXED",
-    "cpaAmount": 57,
-    "cpaCountryOverrides": {
-      "CH": 45,
-      "US": 100
-    },
-    "fixedAmount": 890
-  },
-  {
-    "offerId": "offer_1769854728809",
-    "type": "FIXED",
-    "fixedAmount": 300
-  },
-  {
-    "offerId": "offer_1769855005421",
-    "type": "FIXED",
-    "fixedAmount": 250
-  },
-  {
-    "offerId": "offer_1769855196055",
-    "type": "FIXED",
-    "fixedAmount": 180
-  },
-  {
-    "offerId": "offer_1769855349459",
-    "type": "CPA",
-    "cpaAmount": 70
   }
 ]

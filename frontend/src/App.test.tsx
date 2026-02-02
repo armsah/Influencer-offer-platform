@@ -1,3 +1,8 @@
+/*
+ * App.test.tsx contains unit tests for the App component using React Testing Library.
+ * This example test checks for a text matching "learn react".
+ */
+
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';

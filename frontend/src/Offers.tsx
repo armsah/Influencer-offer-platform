@@ -1,5 +1,13 @@
+/*
+ * Offers.tsx displays available offers and their payouts in a React frontend.
+ * It fetches offers, base payouts, and influencer-specific custom payouts from the backend.
+ * Users can filter offers by title and optionally by influencer ID to see only their custom payouts.
+ * The component calculates and displays payouts (FIXED, CPA, CPA+FIXED) including country overrides.
+ */
+
 import React, { useEffect, useState } from "react";
 
+// Interfaces defining the structure of offers, payouts, and custom payouts
 interface Offer {
   id: string;
   title: string;
@@ -21,6 +29,7 @@ interface CustomPayout extends Payout {
 
 const normalize = (v: string) => v.trim().toLowerCase();
 
+// State for offers, base payouts, custom payouts, and search inputs
 const Offers: React.FC = () => {
   const [offers, setOffers] = useState<Offer[]>([]);
   const [basePayouts, setBasePayouts] = useState<Payout[]>([]);
@@ -29,6 +38,7 @@ const Offers: React.FC = () => {
   const [titleSearch, setTitleSearch] = useState("");
   const [influencerSearch, setInfluencerSearch] = useState("");
 
+  // Fetch data from backend API
   useEffect(() => {
     Promise.all([
       fetch("http://localhost:5000/offers").then(r => r.json()),
@@ -41,11 +51,15 @@ const Offers: React.FC = () => {
     });
   }, []);
 
-  // Payout resolution — FIXED LOGIC
+
+    /**
+   * Determines the relevant payout for an offer.
+   * - If influencer ID is provided, only returns custom payout for that influencer.
+   * - Otherwise, returns base payout.
+   */
   const getPayout = (offerId: string) => {
     const inf = influencerSearch.trim();
 
-    //  influencer search → ONLY custom payouts allowed
     if (inf) {
       return customPayouts.find(
         p =>
@@ -54,15 +68,13 @@ const Offers: React.FC = () => {
       );
     }
 
-    //  no influencer → base payout allowed
     return basePayouts.find(
       p => normalize(p.offerId) === normalize(offerId)
     );
   };
 
-  // Filtering rules
+ // Filter offers by title and availability of payout
   const filteredOffers = offers.filter(offer => {
-    // title filter
     if (
       titleSearch &&
       !offer.title.toLowerCase().includes(titleSearch.toLowerCase())
@@ -70,15 +82,16 @@ const Offers: React.FC = () => {
       return false;
     }
 
-    // payout rule
     return Boolean(getPayout(offer.id));
   });
 
-  //  Render payout
+  /**
+   * Renders a payout string for display.
+   * Handles FIXED, CPA, and CPA+FIXED, including country-specific CPA ranges.
+   */
   const renderPayout = (p?: Payout | CustomPayout) => {
   if (!p) return "N/A";
 
-  // Helper to render CPA or CPA range
   const renderCPA = () => {
     if (p.cpaCountryOverrides && Object.keys(p.cpaCountryOverrides).length > 0) {
       const values = Object.values(p.cpaCountryOverrides).map(Number);
@@ -113,8 +126,8 @@ const Offers: React.FC = () => {
   }
 };
 
-
-  return (
+// Render the component
+return (
     <div style={{ padding: 20 }}>
       <h1>Available Offers</h1>
 
